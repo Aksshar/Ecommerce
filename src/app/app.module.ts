@@ -1,6 +1,9 @@
+import { AuthService } from './auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +40,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot([
       {path:'', component: HomeComponent },
@@ -44,12 +48,13 @@ import { LoginComponent } from './login/login.component';
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckOutComponent },
       { path: 'order-success', component: OrderSuccessComponent },
+      { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
       { path: 'admin/products', component: AdminProductsComponent },
       {path:'admin/orders',component: AdminOrdersComponent},
     ])
   ],
-  providers: [],
+  providers: [AngularFireAuth,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
